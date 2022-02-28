@@ -3,6 +3,7 @@ const loadMobilesData = async () => {
     //get input data
     const searchText = getInputData();
 
+    //condition check input value is empty or not
     if (searchText) {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         try {
@@ -11,9 +12,11 @@ const loadMobilesData = async () => {
             processSearchResult(resData.data);
         } catch (e) {
 
+            alert('SomeThing is Wrong!!')
         }
     } else {
-        console.log("empty")
+        //alert for empty input value
+            alert('please insert brand name')
 
     }
 }
@@ -52,7 +55,8 @@ const processSearchResult = (phones) => {
 
     } else {
 
-        console.log('else', phones)
+        //alert for empty input value
+        alert('Sorry! Data not found')
     }
 
 }
@@ -84,7 +88,9 @@ const displaySearchResult = (phones) => {
     });
 }
 
+//load and display phone detail info
 const loadPhoneDetails = async (phoneId) =>{
+    //load data with phone id
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
     try {
         const res = await fetch(url);
@@ -92,7 +98,7 @@ const loadPhoneDetails = async (phoneId) =>{
         console.log(resData.data);
         displayPhoneDetails(resData.data);
     } catch (e) {
-
+        alert('SomeThing is Wrong!!')
     }
 }
 
