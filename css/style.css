@@ -11,3 +11,22 @@ header{
     background-color: #1A374D;
     color:#EEEEEE;
 }
+.btn-color{
+    background-color: #406882;
+    color:#EEEEEE;
+    font-weight: 400;
+}
+
+/* main part style  */
+
+/* input content style  */
+.input-content{
+    width: 50%;
+}
+/* responsive for input  */
+
+@media screen and (max-width:	540px) {
+    .input-content{
+        width: 75%;
+    }
+}
