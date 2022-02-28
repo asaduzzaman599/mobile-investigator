@@ -1,6 +1,9 @@
 /* google fonts  */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+:root{
+    --button-color:#406882;
+}
 /* common style  */
 body{
     font-family: 'Poppins', sans-serif;
@@ -12,9 +15,15 @@ header{
     color:#EEEEEE;
 }
 .btn-color{
-    background-color: #406882;
+    background-color: var(--button-color);
     color:#EEEEEE;
     font-weight: 400;
+    border: 1px solid var(--button-color);
+}
+.btn-color:hover{
+    background-color: white;
+    color: var(--button-color);
+
 }
 
 /* main part style  */
