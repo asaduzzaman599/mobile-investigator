@@ -97,13 +97,19 @@ const loadPhoneDetails = async (phoneId) =>{
 }
 
 const displayPhoneDetails = (phoneInfo) =>{
+    console.log('clicked')
     const phoneDetailContainer = document.getElementById('phone-detain-container');
     phoneDetailContainer.parentNode.classList.add('card')
     const {chipSet,displaySize,memory,sensors} = phoneInfo.mainFeatures;
-    console.log(chipSet,displaySize,memory,sensors)
+    
+    const {Bluetooth,GPS,NFC,Radio,USB,WLAN}= phoneInfo.others?phoneInfo.others:'';
+    console.log('clicked');
+    console.log(Bluetooth,GPS,NFC,Radio,USB,WLAN);
+    console.log(Object.keys(phoneInfo))
+
     phoneDetailContainer.innerHTML=`
     <div class="col-md-4">
-    <div class="text-center d-flex align-items-center m-md-5">
+    <div class="text-center d-flex align-items-center mt-md-5 mb-2">
     
     <img src="${phoneInfo.image}" class="mx-auto  img-fluid rounded-start" alt="phone Info image">
     </div>
@@ -116,6 +122,7 @@ const displayPhoneDetails = (phoneInfo) =>{
                       <p><span class="fw-bold">Brand : </span><br>${phoneInfo.brand}</p>
                       
                       
+                      <p class="text-center fw-bold">Main Features</p>
                       <p class="card-text"><span class="fw-bold">chipSet :</span> <br>${chipSet}</p>
                       
                       <p class="card-text"><span class="fw-bold">Display Size :</span> <br>${displaySize}</p>
@@ -123,8 +130,21 @@ const displayPhoneDetails = (phoneInfo) =>{
                       <p class="card-text"><span class="fw-bold">Memory :</span> <br>${memory}</p>
                       
                       <p class="card-text"><span class="fw-bold">Sensors :</span> <br>${sensors.join(', ')}</p>
-                      <p class="card-text"></p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      
+                      <p class="text-center fw-bold">Others</p>
+
+                      <p class="card-text"><span class="fw-bold">Bluetooth :</span> ${Bluetooth?Bluetooth:"No Data"}</p>
+                      
+                      <p class="card-text"><span class="fw-bold">GPS :</span> ${GPS?GPS:"No Data"}</p>
+                      
+                      <p class="card-text"><span class="fw-bold">NFC :</span> ${NFC?NFC:"No Data"}</p>
+                      
+                      <p class="card-text"><span class="fw-bold">Radio :</span> ${Radio?Radio:"No Data"}</p>
+                      
+                      <p class="card-text"><span class="fw-bold">USB :</span> ${USB?USB:"No Data"}</p>
+                      
+                      <p class="card-text"><span class="fw-bold">WLAN :</span> ${WLAN?WLAN:"No Data"}</p>
+                      
                     </div>
                   </div>
     `
@@ -133,6 +153,11 @@ const displayPhoneDetails = (phoneInfo) =>{
 const clearContainer = () => {
     document.getElementById('search-result-container').textContent = '';
     document.getElementById('show-more-btn').classList.add('d-none');
+    
+    const phoneDetailContainer = document.getElementById('phone-detain-container');
+    phoneDetailContainer.parentNode.classList.remove('card');
+    phoneDetailContainer.textContent = '';
+
     // document.getElementById('show-more-btn').textContent ='';
 
 };
