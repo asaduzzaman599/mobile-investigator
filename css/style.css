@@ -1,26 +1,29 @@
 /* google fonts  */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-:root{
-    --button-color:#406882;
+:root {
+    --button-color: #406882;
 }
+
 /* common style  */
-body{
+body {
     font-family: 'Poppins', sans-serif;
 }
 
 /* header style  */
-header{
+header {
     background-color: #1A374D;
-    color:#EEEEEE;
+    color: #EEEEEE;
 }
-.btn-color{
+
+.btn-color {
     background-color: var(--button-color);
-    color:#EEEEEE;
+    color: #EEEEEE;
     font-weight: 400;
     border: 1px solid var(--button-color);
 }
-.btn-color:hover{
+
+.btn-color:hover {
     background-color: white;
     color: var(--button-color);
 
@@ -29,13 +32,23 @@ header{
 /* main part style  */
 
 /* input content style  */
-.input-content{
+.input-content {
     width: 50%;
 }
+
+/* detail info section style*/
+.detail-info {
+    width: 75%;
+}
+
 /* responsive for input  */
 
-@media screen and (max-width:	540px) {
-    .input-content{
+@media screen and (max-width: 540px) {
+    .input-content {
         width: 75%;
+    }
+
+    .detail-info {
+        width: 100%;
     }
 }
