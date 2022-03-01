@@ -16,6 +16,13 @@ header {
     color: #EEEEEE;
 }
 
+/* main section style  */
+
+
+.input-content {
+    width: 50%;
+}
+
 .btn-color {
     background-color: var(--button-color);
     color: #EEEEEE;
@@ -29,13 +36,6 @@ header {
 
 }
 
-/* main part style  */
-
-/* input content style  */
-.input-content {
-    width: 50%;
-}
-
 /* detail info section style*/
 .detail-info {
     width: 75%;
@@ -45,7 +45,7 @@ header {
     display: none;
 }
 
-/* responsive for input  */
+/* responsive for mobile  */
 
 @media screen and (max-width: 540px) {
     .input-content {

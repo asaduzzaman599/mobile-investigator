@@ -2,12 +2,13 @@
 let searchRessult;
 
 // on clicked button load mobile data 
-const loadPhonesData =  () => {
+const loadPhonesData = () => {
     //get input data
     const searchText = getInputData();
 
     //condition check input value is empty or not
     if (searchText) {
+        //display spinner
         toggleSpinner('block');
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         loadData(url, processSearchResult);
@@ -23,18 +24,20 @@ const loadPhonesData =  () => {
 const loadPhoneDetails = (phoneId) => {
     //load data with phone id
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
-    
+
     toggleSpinner('block');
     loadData(url, displayPhoneDetails);
 }
 
 //common function for load data
-const loadData =async (url, operation) =>{
+const loadData = async (url, operation) => {
+    // try catch use for track is code execute properly
     try {
         const res = await fetch(url);
         const resData = await res.json();
         operation(resData.data);
     } catch (e) {
+        //hide spinner
         toggleSpinner('none');
         clearContainer();
         alert('SomeThing is Wrong! Please check your internet connection.')
@@ -57,7 +60,7 @@ const processSearchResult = (phones) => {
     //store the search result
     searchRessult = phones;
 
-    //reset the container
+    //reset 
     clearContainer();
     //hide spinner
     toggleSpinner('none');
@@ -83,7 +86,6 @@ const processSearchResult = (phones) => {
         //alert for empty input value
         document.getElementById('alert-content').classList.remove('d-none');
     }
-
 }
 
 //display all phone results with card
@@ -114,13 +116,15 @@ const displaySearchResult = (phones) => {
     });
 }
 
-const displayPhoneDetails =(phoneInfo) => {
+//display phone detail info
+const displayPhoneDetails = (phoneInfo) => {
     //hide spinner
     toggleSpinner('none');
 
     const phoneDetailContainer = document.getElementById('phone-detain-container');
     //add card class to parent elemtn
-    phoneDetailContainer.parentNode.classList.add('card')
+    phoneDetailContainer.parentNode.classList.add('card');
+    
     //distructuring mainfeatures object
     const {
         chipSet,
@@ -128,6 +132,7 @@ const displayPhoneDetails =(phoneInfo) => {
         memory,
         sensors
     } = phoneInfo.mainFeatures;
+
     //distructuring mainfeatures object if data found  
     const {
         Bluetooth,
@@ -141,14 +146,15 @@ const displayPhoneDetails =(phoneInfo) => {
     //set data in ui card
     phoneDetailContainer.innerHTML = `
     <div class="col-md-4">
-    <div class="text-center d-flex align-items-center mt-md-5 mb-2">
+    <div class="text-center mt-md-5 mb-2">
     
-    <img src="${phoneInfo.image}" class="mx-auto  img-fluid rounded-start" alt="phone Info image">
+    <img src="${phoneInfo.image}" class="img-fluid rounded-start" alt="phone Info image">
     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">${phoneInfo.name}</h5>
+                      <h5 class="card-title text-md-start text-center mb-3">${phoneInfo.name}</h5>
+
                       <p class="card-text"><span class="fw-bold">Release Date :</span> <br>${phoneInfo.releaseDate?phoneInfo.releaseDate:'No release date found'}</p>
                       <p><span class="fw-bold">Brand : </span><br>${phoneInfo.brand}</p>
 
@@ -168,9 +174,10 @@ const displayPhoneDetails =(phoneInfo) => {
                       
                     </div>
                   </div>
-    `
+    `;
 }
 
+//reset
 const clearContainer = () => {
     //clear search result container
     document.getElementById('search-result-container').textContent = '';
