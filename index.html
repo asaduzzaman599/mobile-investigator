@@ -26,7 +26,7 @@
         <section class="mt-4">
             <div class="input-group mb-3 mx-auto input-content">
                 <input id="search-input" type="text" class="form-control" placeholder="Search Phone Name" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button onclick="loadMobilesData()" class="btn btn-color" type="button" id="button-addon2">Search</button>
+                <button onclick="loadPhonesData()" class="btn btn-color" type="button" id="button-addon2">Search</button>
               </div>
         </section>
 
@@ -51,6 +51,18 @@
                     Show More
                 </button>
               </div>
+
+              <!-- alert for empty data  -->
+              <div id="alert-content" class="alert alert-dark d-none" role="alert">
+                Sorry! No search result found. 
+              </div>
+              <!-- spinner  -->
+              <div id="spinner" class="position-fixed opacity-50 spinner-content top-0  w-100 bg-light snipper-content">
+
+                <div class="spinner spinner-grow text-dark position-fixed  top-50 start-50 " role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
         </section>
     </main>
     
