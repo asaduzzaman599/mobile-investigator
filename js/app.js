@@ -1,5 +1,5 @@
-//initialize variable for store search result
-let searchRessult;
+//declear variable for store search result
+let searchResult;
 
 // on clicked button load mobile data 
 const loadPhonesData = () => {
@@ -15,7 +15,7 @@ const loadPhonesData = () => {
 
     } else {
         //alert for empty input value
-        alert('please insert phone brand name');
+        alert('please insert phone name');
 
     }
 }
@@ -40,7 +40,7 @@ const loadData = async (url, operation) => {
         //hide spinner
         toggleSpinner('none');
         clearContainer();
-        alert('SomeThing is Wrong! Please check your internet connection.')
+        alert('Something is Wrong! Please check your internet connection.');
     }
 }
 
@@ -58,7 +58,7 @@ const getInputData = () => {
 
 const processSearchResult = (phones) => {
     //store the search result
-    searchRessult = phones;
+    searchResult = phones;
 
     //reset 
     clearContainer();
@@ -79,7 +79,7 @@ const processSearchResult = (phones) => {
             showMoreBtn.addEventListener('click', () => {
                 //pass the remainning data and hide the show more button
                 showMoreBtn.classList.add('d-none');
-                displaySearchResult(searchRessult.slice(20, searchRessult.length));
+                displaySearchResult(searchResult.slice(20, searchResult.length));
             });
         }
     } else {
