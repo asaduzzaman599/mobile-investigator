@@ -168,9 +168,9 @@ const displayPhoneDetails = (phoneInfo) => {
                       <p><span class="fw-bold">Brand : </span><br>${phoneInfo.brand}</p>
 
                       <p class="text-center fw-bold">Main Features</p>
-                      <p class="card-text"><span class="fw-bold">Chip Set :</span> <br>${chipSet}</p>
-                      <p class="card-text"><span class="fw-bold">Display Size :</span> <br>${displaySize}</p>
-                      <p class="card-text"><span class="fw-bold">Memory :</span> <br>${memory}</p>
+                      <p class="card-text"><span class="fw-bold">Chip Set :</span> <br>${chipSet?chipSet:'No data found'}</p>
+                      <p class="card-text"><span class="fw-bold">Display Size :</span> <br>${displaySize?displaySize:'No data found'}</p>
+                      <p class="card-text"><span class="fw-bold">Memory :</span> <br>${memory?memory:'No data found'}</p>
                       <p class="card-text"><span class="fw-bold">Sensors :</span> <br>${sensors.join(', ')}</p>
                       
                       <p class="text-center fw-bold">Others</p>
