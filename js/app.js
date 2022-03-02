@@ -11,6 +11,7 @@ const loadPhonesData = () => {
         //display spinner
         toggleSpinner('block');
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        //passing url and funciton
         loadData(url, processSearchResult);
 
     } else {
@@ -26,17 +27,22 @@ const loadPhoneDetails = (phoneId) => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 
     toggleSpinner('block');
+
+    //passing url and funciton
     loadData(url, displayPhoneDetails);
 }
 
 //common function for load data
-const loadData = async (url, operation) => {
-    // try catch use for track is code execute properly
+const loadData = async (url, operationWithResData) => {
+    // try catch use for track is code execute and data fetch properly
     try {
+        
         const res = await fetch(url);
         const resData = await res.json();
-        operation(resData.data);
+        //call back function to sent data desired fuction
+        operationWithResData(resData.data);
     } catch (e) {
+
         //hide spinner
         toggleSpinner('none');
         clearContainer();
@@ -75,6 +81,7 @@ const processSearchResult = (phones) => {
         if (phones.length > 20) {
             const showMoreBtn = document.getElementById('show-more-btn');
             showMoreBtn.classList.remove('d-none');
+
             //event handle for show more button
             showMoreBtn.addEventListener('click', () => {
                 //pass the remainning data and hide the show more button
@@ -90,6 +97,7 @@ const processSearchResult = (phones) => {
 
 //display all phone results with card
 const displaySearchResult = (phones) => {
+
     const searchResultContainer = document.getElementById('search-result-container');
 
     //traverse  one by one element and display in ui
@@ -112,6 +120,7 @@ const displaySearchResult = (phones) => {
               </div>
         `;
 
+        //card appending in ui
         searchResultContainer.appendChild(div);
     });
 }
@@ -165,26 +174,26 @@ const displayPhoneDetails = (phoneInfo) => {
                       <p class="card-text"><span class="fw-bold">Sensors :</span> <br>${sensors.join(', ')}</p>
                       
                       <p class="text-center fw-bold">Others</p>
-                      <p class="card-text"><span class="fw-bold">Bluetooth :</span> ${Bluetooth?Bluetooth:"No Data"}</p>                      
-                      <p class="card-text"><span class="fw-bold">GPS :</span> ${GPS?GPS:"No Data"}</p>                      
-                      <p class="card-text"><span class="fw-bold">NFC :</span> ${NFC?NFC:"No Data"}</p>                      
-                      <p class="card-text"><span class="fw-bold">Radio :</span> ${Radio?Radio:"No Data"}</p>                      
-                      <p class="card-text"><span class="fw-bold">USB :</span> ${USB?USB:"No Data"}</p>                      
-                      <p class="card-text"><span class="fw-bold">WLAN :</span> ${WLAN?WLAN:"No Data"}</p>
+                      <p class="card-text"><span class="fw-bold">Bluetooth :</span> ${Bluetooth?Bluetooth:"No data found"}</p>                      
+                      <p class="card-text"><span class="fw-bold">GPS :</span> ${GPS?GPS:"No data found"}</p>                      
+                      <p class="card-text"><span class="fw-bold">NFC :</span> ${NFC?NFC:"No data found"}</p>                      
+                      <p class="card-text"><span class="fw-bold">Radio :</span> ${Radio?Radio:"No data found"}</p>                      
+                      <p class="card-text"><span class="fw-bold">USB :</span> ${USB?USB:"No data found"}</p>                      
+                      <p class="card-text"><span class="fw-bold">WLAN :</span> ${WLAN?WLAN:"No data found"}</p>
                       
                     </div>
                   </div>
     `;
 }
 
-//reset
+//reset all
 const clearContainer = () => {
     //clear search result container
     document.getElementById('search-result-container').textContent = '';
     //hide show more button
     document.getElementById('show-more-btn').classList.add('d-none');
 
-    //clear detain info container and remove class from parent element
+    //clear detail info container and remove class from parent element
     const phoneDetailContainer = document.getElementById('phone-detain-container');
     phoneDetailContainer.parentNode.classList.remove('card');
     phoneDetailContainer.textContent = '';
@@ -194,7 +203,7 @@ const clearContainer = () => {
 
 };
 
-//spinner
+//spinner toggle function
 const toggleSpinner = (dispayStyle) => {
     document.getElementById('spinner').style.display = dispayStyle;
 }
